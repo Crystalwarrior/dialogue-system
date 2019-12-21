@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Dialogue.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Portrait.tscn" type="PackedScene" id=2]
+[ext_resource path="res://animal/Doubutsugo_383.wav" type="AudioStream" id=3]
+[ext_resource path="res://Test.gd" type="Script" id=4]
+[ext_resource path="res://animal/Doubutsugo_385.wav" type="AudioStream" id=5]
+[ext_resource path="res://animal/Doubutsugo_384.wav" type="AudioStream" id=6]
+[ext_resource path="res://animal/Doubutsugo_387.wav" type="AudioStream" id=7]
+[ext_resource path="res://animal/Doubutsugo_386.wav" type="AudioStream" id=8]
+[ext_resource path="res://animal/Doubutsugo_382.wav" type="AudioStream" id=9]
+
+[node name="Test" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogueBox" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Face" type="Panel" parent="DialogueBox"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+
+[node name="Portrait" parent="DialogueBox/Face" instance=ExtResource( 2 )]
+
+[node name="Dialogue" parent="DialogueBox" instance=ExtResource( 1 )]
+margin_left = 68.0
+margin_right = 324.0
+rect_min_size = Vector2( 256, 64 )
+text_delay = 0.06
+blip_sounds = [ ExtResource( 9 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ) ]
+
+[node name="DebugBox" type="HBoxContainer" parent="."]
+margin_top = 70.0
+margin_right = 360.0
+margin_bottom = 134.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Box" type="PanelContainer" parent="DebugBox"]
+margin_right = 256.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 256, 64 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SendText" type="TextEdit" parent="DebugBox/Box"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 249.0
+margin_bottom = 57.0
+text = "Hey, hey, hey! What's up, my man? Yeah! This is great!   ha"
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="DebugBox"]
+margin_left = 260.0
+margin_right = 302.0
+margin_bottom = 64.0
+text = "Play!"
+
+[node name="Pause" type="Button" parent="DebugBox"]
+margin_left = 306.0
+margin_right = 360.0
+margin_bottom = 64.0
+text = "Pause!"
+[connection signal="finished" from="DialogueBox/Dialogue" to="." method="_on_Dialogue_finished"]
+[connection signal="pressed" from="DebugBox/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="DebugBox/Pause" to="." method="_on_Pause_pressed"]

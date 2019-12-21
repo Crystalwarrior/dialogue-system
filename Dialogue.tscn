@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Dialogue.gd" type="Script" id=1]
+
+[node name="Dialogue" type="PanelContainer"]
+margin_right = 128.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+text_delay = 0.05
+
+[node name="Text" type="RichTextLabel" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 121.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+visible_characters = 99
+scroll_active = false
+scroll_following = true
+
+[node name="BlipSound" type="AudioStreamPlayer" parent="."]
